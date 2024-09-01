@@ -1,2 +1,5 @@
 # Quantum
-A quantitve trading system
+
+A quantitve trading system.
+
+[TOC]
