@@ -1,10 +1,13 @@
-# 定义task类，它可以基于参数生成，也可以通过读取json文件生成
-# 其属性包括:task_name, id, task_func, trigger
-import uuid
-from apscheduler.triggers import trigger
+#!/home/fred/dev/Quantum/.venv/bin/python3
 
-class taskUnit(object):
-    def __init__(self, task_name: str, func: function, trigger: trigger):
+from apscheduler.triggers.cron import CronTrigger
+import uuid
+
+
+
+
+class TaskUnit(object):
+    def __init__(self, task_name: str, func, trigger: CronTrigger, timezong = 'Asia/Shanghai'):
         self.name = task_name
         self.uid = uuid.uuid4()
         self.func = func

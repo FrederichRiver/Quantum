@@ -19,6 +19,7 @@ from apscheduler.jobstores.sqlalchemy import SQLAlchemyJobStore
 
 from typing import List, Dict, Any, Union, Optional
 from datetime import datetime
+from task_unit import TaskUnit
 import logging
 import os
 import time
@@ -34,7 +35,6 @@ import sys
 import re
 import pytz
 import uuid
-import task_unit
 
 
 class AtomTask(BackgroundScheduler):
