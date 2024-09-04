@@ -6,16 +6,15 @@ from task_unit import TaskUnit
 import json
 import os
 import re
-from apscheduler.triggers.cron import CronTrigger
+from apscheduler.triggers.cron import CronTrigger, BaseTrigger
 import importlib
 if "/home/fred/dev/Quantum/" not in sys.path:
     sys.path.append("/home/fred/dev/Quantum/")
 import service_api.event
-from service_api.event import test_func_1, test_func_2
+
 
 class TaskSolver(object):
     def __init__(self):
-        self.json_file = None
         self.task_list = []
         self.module_list = [service_api.event,]
 
@@ -23,7 +22,7 @@ class TaskSolver(object):
         if os.path.exists(json_file) is False:
             raise FileNotFoundError("File not found")
         else:
-            with open(self.json_file, 'r') as f:
+            with open(json_file, 'r') as f:
                 data = json.load(f)
                 for task in data:
                     task_unit = TaskUnit(
@@ -34,7 +33,7 @@ class TaskSolver(object):
                     self.task_list.append(task_unit)
         return self.task_list
 
-    def trigger_solve(self, jsdata: dict) -> TaskUnit:
+    def trigger_solve(self, jsdata: dict) -> BaseTrigger:
         """
         Resolve the trigger.
         FORMAT:

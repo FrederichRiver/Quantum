@@ -5,12 +5,12 @@ from task_solver import TaskSolver
 from task_unit import TaskUnit
 from apscheduler.triggers.cron import CronTrigger
 from service_api import event
+from service_api.event import test_func_1, test_func_2
 
 class TestTaskSolver(unittest.TestCase):
     def setUp(self):
         self.ts = TaskSolver()
-        self.ts.json_file = '/home/fred/dev/Quantum/task_engine/test.json'
-        self.ts.read_json(self.ts.json_file)
+        self.ts.read_json('/home/fred/dev/Quantum/task_engine/test.json')
 
     def test_read_json(self):
         self.assertEqual(len(self.ts.task_list), 2)
