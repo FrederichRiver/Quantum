@@ -3,6 +3,7 @@ import atexit
 import os
 import signal
 import sys
+import time
 
 def daemonize(pid_file: str, log_file: str, prog_name: str):
     """
@@ -59,12 +60,24 @@ def daemonize(pid_file: str, log_file: str, prog_name: str):
         raise SystemExit(1)
     signal.signal(signal.SIGTERM, sigterm_handler)
 
+def log_monitor(log_file: str):
+    # q: 如何创建一个循环运行的进程，不停地监控log文件，如果log文件被删除了就重新创建它
+    # a: 可以使用os.path.exists()函数来判断文件是否存在，如果不存在就创建文件
+    while True:
+        if not os.path.exists(log_file):
+            with open(log_file, 'w') as f:
+                pass
+        time.sleep(30)
+
 
 def main():
     # 每隔1分钟打印一次当前时间
     import time
     while True:
-        
+        # q: 如何创建一个循环运行的进程，不停地监控log文件，如果log文件被删除了就重新创建它
+        # a: 可以使用os.path.exists()函数来判断文件是否存在，如果不存在就创建文件
+
+
         print(time.strftime('%Y-%m-%d %H:%M:%S', time.localtime()))
         time.sleep(60)
 
@@ -105,7 +118,7 @@ if __name__ == '__main__':
                     os.kill(int(f.read()), signal.SIGTERM)
                 print(f"{PROG_NAME} is restarting", file=sys.stderr)
             try:
-                deamonize(PID_FILE, LOG_FILE, PROG_NAME)
+                daemonize(PID_FILE, LOG_FILE, PROG_NAME)
             except RuntimeError as e:
                 print(e, file=sys.stderr)
                 raise SystemExit(1)
