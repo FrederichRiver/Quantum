@@ -1,5 +1,6 @@
 {
     "python.analysis.typeCheckingMode": "basic",
     "python.analysis.autoImportCompletions": true,
-    "git.terminalAuthentication": false
+    "git.terminalAuthentication": false,
+    "github.gitAuthentication": false
 }
