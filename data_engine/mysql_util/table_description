@@ -1,0 +1,33 @@
+table stock_list
+(
+    stock_code varchar(10) NOT NULL,
+    stock_name varchar(20) NOT NULL,
+    orgId varchar(25) NOT NULL,
+    short_code varchar(10) NOT NULL,
+    create_date date,
+    update_date date,
+    xrdr_date date,
+    balance_date date,
+    income_date date,
+    cashflow_date date,
+    flag varchar(10),
+  PRIMARY KEY (stock_code)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+create table template_stock
+(
+  trade_date date NOT NULL,
+  stock_code varchar(10) NOT NULL,
+  stock_name varchar(20) NOT NULL,
+  close_price float default 0,
+  high_price float default 0,
+  low_price float default 0,
+  open_price float default 0,
+  prev_close_price float default 0,
+  change_rate float default 0,
+  amplitude float default 0,
+  volume int default 0,
+  turnover float default 0,
+  adjust_factor float  default 1 ,
+  PRIMARY KEY (trade_date, stock_code)
+)  ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
