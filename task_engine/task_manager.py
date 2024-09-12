@@ -1,4 +1,16 @@
-# AtomTask是基于APScheduler构建的类
+# AtomTask class represents a background scheduler for managing tasks.
+# Attributes:
+#     job_stores (dict): A dictionary containing the job stores configuration.
+#     executors (dict): A dictionary containing the executors configuration.
+#     task_list (list): A list of TaskUnit objects representing the tasks.
+#     task_id_map (list): A list of task IDs.
+# Methods:
+#     add_task(task: TaskUnit): Adds a task to the task list and schedules it.
+#     remove_task(task_id): Removes a task from the task list by task ID.
+#     run(): Starts the scheduler.
+# Note:
+#     This class inherits from BackgroundScheduler class from apscheduler.schedulers.background module.
+
 
 from apscheduler.schedulers.background import BackgroundScheduler
 from apscheduler.jobstores.sqlalchemy import SQLAlchemyJobStore
