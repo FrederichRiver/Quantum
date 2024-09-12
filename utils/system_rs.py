@@ -1,3 +1,4 @@
+import imp
 import time
 import psutil
 import platform
@@ -77,6 +78,7 @@ import psutil
 import time
 import matplotlib.pyplot as plt
 from datetime import datetime
+import platform
 
 def create_db():
     conn = sqlite3.connect('memory_usage.db')
